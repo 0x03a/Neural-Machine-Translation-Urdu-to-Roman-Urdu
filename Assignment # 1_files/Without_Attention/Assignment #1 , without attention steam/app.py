@@ -355,7 +355,6 @@ def main():
     
     with col2:
         st.markdown("### Options")
-        use_phonetic = st.checkbox("Use Phonetic Fallback Only", value=False)
         show_metrics = st.checkbox("Show Translation Metrics", value=True)
     
     # Translate button
@@ -371,7 +370,7 @@ def main():
                     urdu_input.strip(), 
                     preprocessor, 
                     decoder, 
-                    use_phonetic
+                  
                 )
                 
                 translation_time = time.time() - start_time
@@ -388,9 +387,7 @@ def main():
             with col2:
                 method_badge = {
                     "model": "🤖 Model Prediction",
-                    "phonetic": "🔤 Phonetic Fallback", 
-                    "phonetic_fallback": "⚠️ Phonetic (Model Failed)",
-                    "error_fallback": "❌ Phonetic (Error)"
+
                 }
                 
                 st.text_area(
@@ -428,22 +425,8 @@ def main():
     
     # Example section
     st.divider()
-    st.subheader("💡 Example Inputs")
-    
-    examples = [
-        "سلام",
-        "کیا حال ہے",
-        "میں ٹھیک ہوں", 
-        "آپ کا نام کیا ہے",
-        "شکریہ"
-    ]
-    
-    cols = st.columns(len(examples))
-    for i, example in enumerate(examples):
-        with cols[i]:
-            if st.button(example, key=f"ex_{i}", use_container_width=True):
-                st.session_state.urdu_input = example
-                st.rerun()
+ 
+  
     
     # Technical details (collapsible)
     with st.expander("🔧 Technical Details"):
